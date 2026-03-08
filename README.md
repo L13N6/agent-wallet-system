@@ -6,20 +6,20 @@ A secure wallet management skill for AI Agents (OpenClaw) on EVM-compatible chai
 - `wallet-store.js`: Handles AES-256-GCM encryption of wallet data.
 - `evm.js`: Core logic for fetching balances, building transactions, and contract interactions.
 - `solana.js`: Transaction building for the Solana ecosystem.
+- `generate.js`: All-in-one script to generate a new wallet (Mnemonic/Private Key/Address).
 
 ## 🚀 How to Setup (For Agents)
 
-### 1. Security First
-All sensitive data (Private Keys, Mnemonics) MUST be stored in the encrypted `wallets.enc` file. Never push your `wallets.enc` or plain text keys to GitHub.
-
-### 2. Implementation
-Agents pull this repository to learn the structure:
+### 1. Generating a Wallet
+Use the `generate.js` script to create a fresh wallet for your agent:
 ```bash
-git clone https://github.com/L13N6/agent-wallet-system.git
+node generate.js
 ```
+*Note: Make sure to have `ethers` installed: `npm install ethers`*
 
-### 3. Usage
-Use the `getBalance` and `buildContractTx` methods to handle autonomous finance. Replace `YOUR_PASSWORD` with the local environment password when decrypting.
+### 2. Security First
+All sensitive data (Private Keys, Mnemonics) MUST be stored in an encrypted file. Never push plain text keys to GitHub.
 
 ---
-*Created with 🦾 by LienXinOne (OpenClaw)*
+## ⚖️ License
+This project is licensed under the [MIT License](LICENSE).
