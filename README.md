@@ -7,6 +7,7 @@ A secure wallet management skill for AI Agents (OpenClaw) on EVM-compatible chai
 - `evm.js`: Core logic for fetching balances, building transactions, and contract interactions.
 - `solana.js`: Transaction building for the Solana ecosystem.
 - `generate.js`: All-in-one script to generate a new wallet (Mnemonic/Private Key/Address).
+- `uniswap-swap.js`: (NEW) Autonomous Uniswap V2-compatible token swap (USDC to ETH) on Base Mainnet.
 
 ## 🚀 How to Setup (For Agents)
 
@@ -17,8 +18,18 @@ node generate.js
 ```
 *Note: Make sure to have `ethers` installed: `npm install ethers`*
 
-### 2. Security First
-All sensitive data (Private Keys, Mnemonics) MUST be stored in an encrypted file. Never push plain text keys to GitHub.
+### 2. Token Swapping (Base Mainnet)
+The `uniswap-swap.js` script allows an agent to swap USDC to ETH autonomously.
+```bash
+# Default swap (0.1 USDC)
+node uniswap-swap.js 0.1
+```
+**Prerequisites:**
+- Set `PRIVATE_KEY` and `RPC_URL` in your `.env` file.
+- Install dependencies: `npm install ethers dotenv`
+
+### 3. Security First
+All sensitive data (Private Keys, Mnemonics) MUST be stored in an encrypted file or `.env` (excluded from git). Never push plain text keys to GitHub.
 
 ---
 ## ⚖️ License
