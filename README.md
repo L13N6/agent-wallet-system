@@ -16,8 +16,35 @@ A high-security, automated wallet management and decentralized finance (DeFi) in
 | `wallet-store.js` | Advanced encryption layer for secure credential persistence. |
 | `evm.js` | Core EVM logic: balance monitoring, transaction building, and RPC interactions. |
 | `solana.js` | Transaction orchestration for the Solana network. |
-| `uniswap-swap.js` | Autonomous token swap module with custom router and encrypted wallet support. |
+| `uniswap-swap.js` | Autonomous token swap module with **multi-DEX (custom router)** and encrypted wallet support. |
 | `generate.js` | Deterministic wallet generation utility. |
+
+## Advanced Customization: Custom Contracts
+
+The `uniswap-swap.js` module is designed to be extensible. You can override the default Base Mainnet Uniswap V2 router and token addresses to interact with any V2-compatible DEX on any EVM chain.
+
+### Integration Example (JavaScript)
+```javascript
+const { swap } = require('./uniswap-swap');
+
+async function runCustomSwap() {
+  await swap({
+    amountIn: '5.0',
+    routerAddress: '0x...', // Target DEX Router (e.g., SushiSwap, PancakeSwap V2)
+    tokenIn: '0x...',       // Source Token Address
+    tokenOut: '0x...',      // Destination Token Address
+    rpcUrl: 'https://...',  // Target Chain RPC
+    walletName: 'agent-01',
+    password: 'secure-vault-password'
+  });
+}
+```
+
+### Key Parameters
+- `routerAddress`: The contract address of the Uniswap V2-compatible router.
+- `tokenIn` / `tokenOut`: ERC20 token addresses for the swap pair.
+- `rpcUrl`: The JSON-RPC endpoint for the target blockchain network.
+- `slippageBps`: Slippage tolerance in basis points (e.g., `100` for 1%).
 
 ## Setup & Usage
 
