@@ -1,35 +1,55 @@
 # 🦾 Agent Wallet System (EVM/Base/Solana)
 
-A secure wallet management skill for AI Agents (OpenClaw) on EVM-compatible chains (like Base Mainnet) and Solana. This system is designed for autonomous transaction building and encrypted storage.
+A high-security, automated wallet management and decentralized finance (DeFi) integration framework for AI Agents (OpenClaw) on EVM-compatible chains (specifically Base Mainnet) and Solana.
 
-## 📁 System Files
-- `wallet-store.js`: Handles AES-256-GCM encryption of wallet data.
-- `evm.js`: Core logic for fetching balances, building transactions, and contract interactions.
-- `solana.js`: Transaction building for the Solana ecosystem.
-- `generate.js`: All-in-one script to generate a new wallet (Mnemonic/Private Key/Address).
-- `uniswap-swap.js`: (NEW) Autonomous Uniswap V2-compatible token swap (USDC to ETH) on Base Mainnet.
+## 🚀 Key Features
 
-## 🚀 How to Setup (For Agents)
+- **Encrypted Storage**: Secure handling of private keys and mnemonics using AES-256-GCM via `wallet-store.js`.
+- **Multi-Chain Support**: Native support for EVM (Base, Ethereum, etc.) and Solana ecosystems.
+- **Autonomous DeFi**: Built-in Uniswap V2-compatible swap engine for automated asset management.
+- **Agent-Ready**: Optimized for CLI-based agent interactions and headless execution.
 
-### 1. Generating a Wallet
-Use the `generate.js` script to create a fresh wallet for your agent:
+## 📁 Core Components
+
+| File | Description |
+| :--- | :--- |
+| `wallet-store.js` | Advanced encryption layer for secure credential persistence. |
+| `evm.js` | Core EVM logic: balance monitoring, transaction building, and RPC interactions. |
+| `solana.js` | Transaction orchestration for the Solana network. |
+| `uniswap-swap.js` | **(NEW)** Autonomous token swap module (USDC to ETH) optimized for Base Mainnet. |
+| `generate.js` | Deterministic wallet generation utility. |
+
+## 🛠 Setup & Usage
+
+### 1. Environment Configuration
+Create a `.env` file in the root directory (ensure this file is never committed):
+```env
+PRIVATE_KEY=your_encrypted_private_key
+RPC_URL=https://mainnet.base.org
+```
+
+### 2. Autonomous Token Swapping
+The `uniswap-swap.js` module enables agents to manage their own liquidity. It handles token approvals, quotes, and execution with built-in slippage protection.
+
+```bash
+# Execute a swap for 0.1 USDC (Default)
+node uniswap-swap.js 0.1
+
+# Execute swap for custom amount
+node uniswap-swap.js [AMOUNT]
+```
+
+### 3. Wallet Generation
+Provision a new agent identity with a single command:
 ```bash
 node generate.js
 ```
-*Note: Make sure to have `ethers` installed: `npm install ethers`*
 
-### 2. Token Swapping (Base Mainnet)
-The `uniswap-swap.js` script allows an agent to swap USDC to ETH autonomously.
-```bash
-# Default swap (0.1 USDC)
-node uniswap-swap.js 0.1
-```
-**Prerequisites:**
-- Set `PRIVATE_KEY` and `RPC_URL` in your `.env` file.
-- Install dependencies: `npm install ethers dotenv`
+## 🔒 Security Protocol
 
-### 3. Security First
-All sensitive data (Private Keys, Mnemonics) MUST be stored in an encrypted file or `.env` (excluded from git). Never push plain text keys to GitHub.
+- **Zero-Leaked Keys**: Sensitive credentials must be stored in encrypted stores or environment variables only.
+- **Base Optimization**: DeFi operations use optimized routing on Base Mainnet to ensure transaction reliability for small-to-medium agentic payloads.
+- **Code Integrity**: Ensure `node_modules` are up-to-date with `npm install ethers dotenv`.
 
 ---
 ## ⚖️ License
